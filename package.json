@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon Backend/server.js",
     "start": "cross-env NODE_ENV=production node Backend/server.js",
+<<<<<<< HEAD
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+=======
+    "build": "npm install && npm install --prefix Frontend && npm run build --prefix Frontend"
+>>>>>>> 02b63a6da7abd405d53285892d5712d2ff949b91
   },
   "keywords": [],
   "author": "",
