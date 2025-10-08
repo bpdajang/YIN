@@ -27,7 +27,9 @@ const Admin = () => {
   // Fetch resources
   const fetchResources = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/resource");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/resource`
+      );
       if (response.ok) {
         const data = await response.json();
         setAllResources(data);
@@ -46,9 +48,12 @@ const Admin = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/auth/me", {
-          credentials: "include",
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/auth/me`,
+          {
+            credentials: "include",
+          }
+        );
         if (response.ok) {
           const userData = await response.json();
           if (userData.role === "admin") {
@@ -85,11 +90,14 @@ const Admin = () => {
     if (file) formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:5000/api/resource/add", {
-        method: "POST",
-        credentials: "include",
-        body: formData,
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/resource/add`,
+        {
+          method: "POST",
+          credentials: "include",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         const newResource = await response.json();
@@ -189,7 +197,9 @@ const Admin = () => {
                         ) {
                           try {
                             const response = await fetch(
-                              `http://localhost:5000/api/resource/${res._id}`,
+                              `${
+                                import.meta.env.VITE_API_BASE_URL
+                              }/api/resource/${res._id}`,
                               {
                                 method: "DELETE",
                                 credentials: "include",
@@ -240,7 +250,9 @@ const Admin = () => {
                     setError("");
                     try {
                       const response = await fetch(
-                        `http://localhost:5000/api/resource/${editingId}`,
+                        `${
+                          import.meta.env.VITE_API_BASE_URL
+                        }/api/resource/${editingId}`,
                         {
                           method: "PUT",
                           credentials: "include",

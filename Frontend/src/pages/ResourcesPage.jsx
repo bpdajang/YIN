@@ -21,7 +21,9 @@ const ResourcesPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/resource");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/api/resource`
+        );
         const data = await response.json();
         setTemplates(data.templates || []);
         setELearning(data.eLearning || []);
@@ -131,7 +133,9 @@ const ResourcesPage = () => {
                 </h3>
                 <p className="text-gray-600 mb-4">{item.description}</p>
                 <a
-                  href={`http://localhost:5000/api/resource/download/${item._id}`}
+                  href={`${
+                    import.meta.env.VITE_API_BASE_URL
+                  }/api/resource/download/${item._id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 hover:text-blue-700 flex items-center"
