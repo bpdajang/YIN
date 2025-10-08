@@ -24,10 +24,10 @@ app.use("/api/resource", ResourceRoutes);
 app.use("/api/auth", AuthRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(_dirname, "/frontend/dist")));
+  app.use(express.static(path.join(_dirname, "/Frontend/dist")));
 
   app.all(/^((?!\/api).)*$/, (req, res) => {
-    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.resolve(_dirname, "Frontend", "dist", "index.html"));
   });
 }
 
