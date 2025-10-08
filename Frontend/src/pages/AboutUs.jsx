@@ -169,7 +169,13 @@ const AboutUs = () => {
               Together, we can create a brighter future for the youth of South
               Sudan
             </p>
-            <button className="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+            <button
+              onClick={() =>
+                (window.location.href =
+                  "https://docs.google.com/forms/d/e/1FAIpQLSc4Jt5jKc1e2BCS4lJ2vWTC95gi1gp8zxF0FwNa4PO6aSvBFg/viewform?usp=header")
+              }
+              className="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+            >
               Get Involved
             </button>
           </div>
