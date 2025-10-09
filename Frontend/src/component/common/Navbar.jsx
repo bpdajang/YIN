@@ -31,7 +31,7 @@ const Navbar = () => {
         credentials: "include",
       });
       setUser(null);
-      window.location.href = "/home";
+      window.location.href = "/";
     } catch (err) {
       console.error("Logout failed");
     }
