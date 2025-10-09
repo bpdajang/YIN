@@ -2,9 +2,6 @@ import express from "express";
 import multer from "../middleware/multer.js";
 import Resource from "../Models/ResourceModel.js";
 import { auth, admin } from "../middleware/auth.js";
-import asyncWrapper from "../middleware/asyncWrapper.js";
-
-import path from "path";
 
 const router = express.Router();
 const upload = multer;

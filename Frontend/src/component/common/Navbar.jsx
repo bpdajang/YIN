@@ -31,7 +31,7 @@ const Navbar = () => {
         credentials: "include",
       });
       setUser(null);
-      window.location.href = "/login";
+      window.location.href = "/home";
     } catch (err) {
       console.error("Logout failed");
     }
@@ -261,6 +261,7 @@ const Navbar = () => {
           {user ? (
             <button
               onClick={handleLogout}
+              href="/home"
               className="btn btn-ghost text-red-500 hover:bg-red-100"
             >
               Logout

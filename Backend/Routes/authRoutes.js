@@ -108,14 +108,17 @@ router.post(
   }
 );
 
-router.post("/logout", async (req, res) => {
-  try {
-    res.cookie("jwt", "", { maxAge: 0 });
-    res.status(200).json({ message: "Logout successful" });
-  } catch (error) {
-    console.log("error in the Logout controller", error.message);
-    res.status(500).json({ error: "Internal server error" });
-  }
+// User Logout
+router.post("/logout", (req, res) => {
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    secure: true, // must be true in production
+    sameSite: "none", // required for cross-site cookies
+    path: "/", // important: must match path used when setting
+    expires: new Date(0),
+  });
+
+  res.status(200).json({ message: "Logout successful" });
 });
 
 // Get User Info
