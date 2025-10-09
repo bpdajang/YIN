@@ -6,12 +6,19 @@ import cors from "cors";
 import connectMongoDB from "./db/connectMongodb.js";
 import ResourceRoutes from "./Routes/ResourceRoutes.js";
 import AuthRoutes from "./Routes/authRoutes.js";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 const _dirname = path.resolve();
+
+app.use(
+  cors({
+    origin: "https://yin-9f4g.onrender.com",
+  })
+);
 
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.json()); // for parsing application/json
