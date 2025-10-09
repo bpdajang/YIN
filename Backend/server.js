@@ -13,9 +13,14 @@ const app = express();
 const port = process.env.PORT || 5000;
 const _dirname = path.resolve();
 
+const allowedOrigins = [
+  "https://yin-9f4g.onrender.com", // your frontend Render URL
+];
+
 app.use(
   cors({
-    origin: "https://yin-9f4g.onrender.com",
+    origin: allowedOrigins,
+    credentials: true, // if you use cookies or auth tokens
   })
 );
 
