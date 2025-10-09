@@ -6,7 +6,6 @@ import cors from "cors";
 import connectMongoDB from "./db/connectMongodb.js";
 import ResourceRoutes from "./Routes/ResourceRoutes.js";
 import AuthRoutes from "./Routes/authRoutes.js";
-import cors from "cors";
 
 dotenv.config();
 
