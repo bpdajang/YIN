@@ -11,7 +11,7 @@ const Navbar = () => {
           `${import.meta.env.VITE_API_BASE_URL}/api/auth/me`,
           {
             credentials: "include",
-          }
+          },
         );
         if (response.ok) {
           const userData = await response.json();
@@ -31,7 +31,7 @@ const Navbar = () => {
         credentials: "include",
       });
       setUser(null);
-      window.location.href = "/home";
+      window.location.href = "/";
     } catch (err) {
       console.error("Logout failed");
     }
@@ -68,18 +68,15 @@ const Navbar = () => {
                 <a href="/">Home</a>
               </li>
               <li className="group relative">
-                <a
-                  href="/about"
-                  className="btn-ghost inline-block hover:bg-green-300 group-hover:bg-green-300"
-                >
+                <a className="btn-ghost inline-block hover:bg-green-300 group-hover:bg-green-300">
                   About
                 </a>
                 <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-10 w-52 p-2 shadow absolute top-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                   <li>
-                    <a href="/about#mission-vision">Our Mission and Vision</a>
+                    <a href="/about">About Us</a>
                   </li>
                   <li>
-                    <a href="/our-team">Our Team</a>
+                    <a href="/our-team">Our People</a>
                   </li>
                 </ul>
               </li>
@@ -170,18 +167,18 @@ const Navbar = () => {
               </a>
             </li>
             <li className="group relative">
-              <a
-                href="/about"
-                className="btn-ghost inline-block hover:bg-green-300 group-hover:bg-green-300"
-              >
+              <a className="btn-ghost inline-block hover:bg-green-300 group-hover:bg-green-300">
                 About
               </a>
               <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-10 w-52 p-2 shadow absolute top-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                 <li>
-                  <a href="/about#mission-vision">Our Mission and Vision</a>
+                  <a href="/about">About Us</a>
                 </li>
                 <li>
-                  <a href="/our-team">Our Team</a>
+                  <a href="/our-team">Our People</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact Us</a>
                 </li>
               </ul>
             </li>

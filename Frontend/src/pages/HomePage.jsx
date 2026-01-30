@@ -36,7 +36,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {/* {OpenModal && <Modal closeModal={setOpenModal} />} */}
     </section>
   );
 };

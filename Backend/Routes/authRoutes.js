@@ -99,7 +99,6 @@ router.post(
         name: user.name,
         email: user.email,
         role: user.role,
-        studentRef: user.studentRef,
       });
     } catch (err) {
       console.error(err.message);
