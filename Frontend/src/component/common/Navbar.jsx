@@ -41,114 +41,6 @@ const Navbar = () => {
     <div className="container h-24 pt-5 sticky top-0 z-50 mr-0 ml-0 bg-base-100 w-screen opacity-90">
       <div className="navbar ">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
-              </svg>
-            </div>
-            <ul
-              href="/"
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li className="group relative">
-                <a className="btn-ghost inline-block hover:bg-green-300 group-hover:bg-green-300">
-                  About
-                </a>
-                <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-10 w-52 p-2 shadow absolute top-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                  <li>
-                    <a href="/about">About Us</a>
-                  </li>
-                  <li>
-                    <a href="/our-team">Our People</a>
-                  </li>
-                </ul>
-              </li>
-              <li className="group relative">
-                <a
-                  href="/programs"
-                  className="btn-ghost inline-block hover:bg-green-300 group-hover:bg-green-300"
-                >
-                  Programs
-                </a>
-                <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-10 w-64 p-2 shadow absolute top-5 -right-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                  <li>
-                    <a href="/programs#leadership">
-                      Leadership and Time Management
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/programs#Career">Career Guidance</a>
-                  </li>
-                  <li>
-                    <a href="/programs#CoverLetter">
-                      Cover Letter and CV Writing
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/programs#MentalHealth">Mental Health Awareness</a>
-                  </li>
-                  <li>
-                    <a href="/programs#PhysicalHealth">
-                      Physical Health and Wellness
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/programs#SkillDevelopment">
-                      Skill Development Workshops
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/programs#CommunityService">
-                      Community Service Projects
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/programs#Networking">Networking Events</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="/resources" hrefLang="/">
-                  Resources
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/Gallery"
-                  className="btn-ghost inline-block hover:bg-green-300"
-                >
-                  Gallery
-                </a>
-              </li>
-              {user && (
-                <li>
-                  <a
-                    href="/admin"
-                    className="btn-ghost inline-block hover:bg-green-300"
-                  >
-                    Management
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
           <div className="logo mt-0 w-52 flex ">
             <a href="/">
               <img
@@ -160,7 +52,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden md:flex">
-          <ul className="menu menu-horizontal space-x-2 mr-20 lg:space-x-10 px-1">
+          <ul className="menu menu-horizontal space-x-2 mr-20 lg:space-x-10 px-1 flex items-center w-auto">
             <li>
               <a href="/" className="btn-ghost inline-block hover:bg-green-300">
                 Home
@@ -253,21 +145,164 @@ const Navbar = () => {
               </li>
             )}
           </ul>
+          <div className="navbar-end w-auto mr-20">
+            {user ? (
+              <button
+                onClick={handleLogout}
+                href="/home"
+                className="btn btn-ghost text-red-500 hover:bg-red-100"
+              >
+                Logout
+              </button>
+            ) : (
+              <a href="/login" className="btn btn-ghost hover:bg-blue-100">
+                Admin Login
+              </a>
+            )}
+          </div>
         </div>
-        <div className="navbar-end">
-          {user ? (
-            <button
-              onClick={handleLogout}
-              href="/home"
-              className="btn btn-ghost text-red-500 hover:bg-red-100"
+
+        <div className="drawer md:hidden drawer-end navbar-end">
+          <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content">
+            <label
+              htmlFor="my-drawer-5"
+              className="drawer-button btn btn-ghost"
             >
-              Logout
-            </button>
-          ) : (
-            <a href="/login" className="btn btn-ghost hover:bg-blue-100">
-              Admin Login
-            </a>
-          )}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+          </div>
+          <div className="drawer-side">
+            <label
+              htmlFor="my-drawer-5"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul className="menu bg-base-200 min-h-full w-80 p-4">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <div className="drawer drawer-end hover:bg-transparent">
+                  <input
+                    id="about-drawer"
+                    type="checkbox"
+                    className="drawer-toggle"
+                  />
+                  <div className="drawer-content hover:bg-transparent">
+                    <label htmlFor="about-drawer" className="drawer-button">
+                      About
+                    </label>
+                    <div className="drawer-content">
+                      <ul className="menu min-h-full w-80 hover:bg-transparent">
+                        <li>
+                          <a href="/about">About Us</a>
+                        </li>
+                        <li>
+                          <a href="/our-team">Our People</a>
+                        </li>
+                        <li>
+                          <a href="/contact">Contact Us</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="drawer drawer-end hover:bg-transparent">
+                  <input
+                    id="programs-drawer"
+                    type="checkbox"
+                    className="drawer-toggle"
+                  />
+                  <div className="drawer-content hover:bg-transparent">
+                    <label htmlFor="programs-drawer" className="drawer-button">
+                      Programs
+                    </label>
+                    <div className="drawer-content hover:bg-transparent">
+                      <ul className="menu min-h-full w-80 p-4">
+                        <li>
+                          <a href="/programs#leadership">
+                            Leadership and Time Management
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/programs#Career">Career Guidance</a>
+                        </li>
+                        <li>
+                          <a href="/programs#CoverLetter">
+                            Cover Letter and CV Writing
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/programs#MentalHealth">
+                            Mental Health Awareness
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/programs#PhysicalHealth">
+                            Physical Health and Wellness
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/programs#SkillDevelopment">
+                            Skill Development Workshops
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/programs#CommunityService">
+                            Community Service Projects
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/programs#Networking">Networking Events</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a href="/resources">Resources</a>
+              </li>
+              <li>
+                <a href="/Gallery">Gallery</a>
+              </li>
+              {user && (
+                <li>
+                  <a href="/admin">Management</a>
+                </li>
+              )}
+              {user ? (
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-ghost text-red-500 hover:bg-red-100"
+                  >
+                    Logout
+                  </button>
+                </li>
+              ) : (
+                <li>
+                  <a href="/login">Admin Login</a>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

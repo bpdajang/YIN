@@ -96,7 +96,7 @@ const OurTeam = () => {
               />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Babitimo Innocent
+              Jackson Philip Zereda
             </h3>
             <p className="text-blue-600 font-medium">
               Director of Programs and Impact Activities
