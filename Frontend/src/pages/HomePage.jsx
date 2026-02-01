@@ -6,7 +6,7 @@ const HomePage = () => {
 
   return (
     <section className="w-screen">
-      <div id="home" className="container">
+      <div id="home" className="w-full">
         <div
           className=" min-h-screen overflow-hidden hero bg-base-200 bg-cover bg-center rounded-sm "
           style={{

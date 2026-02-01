@@ -11,22 +11,22 @@ import Ganniko from "../Assets/Profile/Ganniko.png";
 
 const OurTeam = () => {
   return (
-    <div>
+    <section className="w-screen bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
       {/* Team Section */}
       <div
         id="our-team"
-        className="bg-white rounded-2xl shadow-lg p-8 *:mt-3 my-10 ml-10 mr-[-50px] "
+        className="w-[95%] ml-2 bg-white rounded-2xl shadow-lg *:mt-3 my-10  px-5 md:ml-5 sm:px-6 md:px-8 lg:px-10"
       >
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 pt-10">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Team</h2>
           <p className="text-gray-600 text-lg">
             Meet the dedicated professionals driving our mission forward
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {/* Founder & Executive Director */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-green-400 to-blue-500 square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Kinako}
@@ -47,7 +47,7 @@ const OurTeam = () => {
           </div>
 
           {/* Project Coordinator */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-yellow-400 to-green-500 square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Devai}
@@ -68,7 +68,7 @@ const OurTeam = () => {
           </div>
 
           {/* Program Manager */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-purple-400 to-pink-500 square-full mx-auto mb-4 overflow-hidden flex items-center justify-center">
               <img
                 src={Zanunga}
@@ -87,7 +87,7 @@ const OurTeam = () => {
           </div>
 
           {/* Director of Programs and Impact Activities */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-blue-400 to-indigo-500 square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Babitimo}
@@ -107,7 +107,7 @@ const OurTeam = () => {
           </div>
 
           {/* Activities Coordinator */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-red-400 to-orange-500 overflow-hidden square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Marcella}
@@ -127,7 +127,7 @@ const OurTeam = () => {
           </div>
 
           {/* IT & Media Lead */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-indigo-400 to-purple-500 square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Burjwok}
@@ -147,7 +147,7 @@ const OurTeam = () => {
           </div>
 
           {/* Assistance Communication and Innovation lead */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-pink-400 to-red-500 square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Missa}
@@ -168,7 +168,7 @@ const OurTeam = () => {
           </div>
 
           {/* Advocacy and partnerships Coordinator */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-pink-400 to-red-500 square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Jenifer}
@@ -189,7 +189,7 @@ const OurTeam = () => {
           </div>
 
           {/* Deputy Advocacy and partnerships Coordinator */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <div className="w-36 h-40 bg-gradient-to-br from-pink-400 to-green-300 square-full mx-auto mb-4 flex items-center justify-center">
               <img
                 src={Ganniko}
@@ -210,7 +210,7 @@ const OurTeam = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
