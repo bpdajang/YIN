@@ -17,22 +17,25 @@ const ResourcesPage = () => {
   const [templates, setTemplates] = React.useState([]);
   const [eLearning, setELearning] = React.useState([]);
   const [references, setReferences] = React.useState([]);
+  const [forums, setForums] = React.useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/api/resource`
+          `${import.meta.env.VITE_API_BASE_URL}/api/resource`,
         );
         const data = await response.json();
         setTemplates(data.templates || []);
         setELearning(data.eLearning || []);
         setReferences(data.references || []);
+        setForums(data.forums || []);
       } catch (error) {
         console.error("Error fetching resources:", error);
         setTemplates([]);
         setELearning([]);
         setReferences([]);
+        setForums([]);
       }
     };
     fetchData();
@@ -93,18 +96,18 @@ const ResourcesPage = () => {
     },
   ];
 
-  const forums = [
-    {
-      name: "General Discussion",
-      description: "Discuss various topics with the community",
-      link: "#",
-    },
-    {
-      name: "Career Advice",
-      description: "Get advice on career-related questions",
-      link: "#",
-    },
-  ];
+  // const forums = [
+  //   {
+  //     name: "General Discussion",
+  //     description: "Discuss various topics with the community",
+  //     link: "#",
+  //   },
+  //   {
+  //     name: "Career Advice",
+  //     description: "Get advice on career-related questions",
+  //     link: "#",
+  //   },
+  // ];
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">

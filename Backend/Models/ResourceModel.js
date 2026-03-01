@@ -4,7 +4,7 @@ const resourceSchema = new mongoose.Schema(
   {
     category: {
       type: String,
-      enum: ["templates", "eLearning", "references", "faqs", "forums"],
+      enum: ["templates", "eLearning", "references", "forums"],
       required: true,
     },
     name: {
@@ -25,12 +25,12 @@ const resourceSchema = new mongoose.Schema(
     fileType: {
       type: String,
     },
-    // For eLearning, references, forums, partners, stories: external link
+    // For eLearning, references, forums.
     link: String,
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default mongoose.model("Resource", resourceSchema);
