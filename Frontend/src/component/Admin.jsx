@@ -15,7 +15,7 @@ const Admin = () => {
   const [editDescription, setEditDescription] = useState("");
   const [editLink, setEditLink] = useState("");
   const [user, setUser] = useState(null);
-  // const [authLoading, setAuthLoading] = useState(true);
+   const [authLoading, setAuthLoading] = useState(true);
 
   const categories = [
     { key: "templates", label: "Templates" },
@@ -110,12 +110,12 @@ const Admin = () => {
 
   const currentResources = allResources[selectedCategory] || [];
 
-  // if (authLoading)
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center">
-  //       <p className="text-gray-500">Checking authentication...</p>
-  //     </div>
-  //   );
+   if (authLoading)
+     return (
+       <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-500">Checking authentication...</p>
+       </div>
+    );
 
   return (
     <div className="w-screen bg-slate-50">
