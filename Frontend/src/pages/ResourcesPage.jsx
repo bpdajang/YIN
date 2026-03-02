@@ -96,19 +96,6 @@ const ResourcesPage = () => {
     },
   ];
 
-   forums = [
-     {
-       name: "General Discussion",
-       description: "Discuss various topics with the community",
-       link: "#",
-     },
-     {
-       name: "Career Advice",
-       description: "Get advice on career-related questions",
-       link: "#",
-     },
-   ];
-
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
