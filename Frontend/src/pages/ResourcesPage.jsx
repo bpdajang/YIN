@@ -96,18 +96,18 @@ const ResourcesPage = () => {
     },
   ];
 
-  // const forums = [
-  //   {
-  //     name: "General Discussion",
-  //     description: "Discuss various topics with the community",
-  //     link: "#",
-  //   },
-  //   {
-  //     name: "Career Advice",
-  //     description: "Get advice on career-related questions",
-  //     link: "#",
-  //   },
-  // ];
+   forums = [
+     {
+       name: "General Discussion",
+       description: "Discuss various topics with the community",
+       link: "#",
+     },
+     {
+       name: "Career Advice",
+       description: "Get advice on career-related questions",
+       link: "#",
+     },
+   ];
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
