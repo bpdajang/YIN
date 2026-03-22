@@ -14,8 +14,9 @@ const Admin = () => {
   const [editName, setEditName] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editLink, setEditLink] = useState("");
+  const [editCategory, setEditCategory] = useState("");
   const [user, setUser] = useState(null);
-   const [authLoading, setAuthLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(true);
 
   const categories = [
     { key: "templates", label: "Templates" },
@@ -100,9 +101,54 @@ const Admin = () => {
         setDescription("");
         setLink("");
         setFile(null);
-      } else setError("Failed to add resource");
-    } catch {
+      } else {
+        const errorData = await response.json();
+        setError(`Failed to add: ${errorData.message || response.statusText}`);
+      }
+    } catch (err) {
       setError("Error adding resource");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleUpdateResource = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const formData = new FormData();
+    formData.append("name", editName);
+    formData.append("description", editDescription);
+    if (editLink) formData.append("link", editLink);
+    if (editCategory && editCategory !== selectedCategory)
+      formData.append("category", editCategory);
+    if (file) formData.append("file", file);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/resource/${editingId}`,
+        { method: "PUT", credentials: "include", body: formData },
+      );
+
+      if (response.ok) {
+        // Refetch resources
+        await fetchResources();
+        setEditingId(null);
+        setEditName("");
+        setEditDescription("");
+        setEditLink("");
+        setEditCategory("");
+        setFile(null);
+        setError("");
+      } else {
+        const errorData = await response.json();
+        setError(
+          `Failed to update: ${errorData.message || response.statusText}`,
+        );
+      }
+    } catch (err) {
+      setError("Error updating resource");
     } finally {
       setLoading(false);
     }
@@ -110,11 +156,11 @@ const Admin = () => {
 
   const currentResources = allResources[selectedCategory] || [];
 
-   if (authLoading)
-     return (
-       <div className="min-h-screen flex items-center justify-center">
+  if (authLoading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-500">Checking authentication...</p>
-       </div>
+      </div>
     );
 
   return (
@@ -191,6 +237,7 @@ const Admin = () => {
                         setEditName(res.name);
                         setEditDescription(res.description);
                         setEditLink(res.link || "");
+                        setEditCategory(res.category || selectedCategory);
                       }}
                       className="px-3 py-1 text-sm rounded-lg bg-yellow-100 hover:bg-yellow-200"
                     >
@@ -225,16 +272,34 @@ const Admin = () => {
           </div>
         </div>
 
-        {/* Right Section */}
+        {/* Right Section - Add/Edit Form */}
         <div className="bg-white p-6 rounded-2xl shadow-sm border">
           <h2 className="text-lg font-semibold mb-4">
             {editingId ? "Edit Resource" : "Add New Resource"}
           </h2>
 
           <form
-            onSubmit={editingId ? handleAddResource : handleAddResource}
+            onSubmit={editingId ? handleUpdateResource : handleAddResource}
             className="space-y-4"
           >
+            <select
+              value={editingId ? editCategory : selectedCategory}
+              onChange={(e) =>
+                editingId
+                  ? setEditCategory(e.target.value)
+                  : setSelectedCategory(e.target.value)
+              }
+              className="w-full px-4 py-2 rounded-xl border focus:ring-2 focus:ring-indigo-500 outline-none"
+              required
+            >
+              <option value="">Select Category</option>
+              {categories.map((cat) => (
+                <option key={cat.key} value={cat.key}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+
             <input
               type="text"
               placeholder="Name"
@@ -283,6 +348,24 @@ const Admin = () => {
             >
               {loading ? "Processing..." : editingId ? "Update" : "Add"}
             </button>
+
+            {editingId && (
+              <button
+                type="button"
+                onClick={() => {
+                  setEditingId(null);
+                  setEditName("");
+                  setEditDescription("");
+                  setEditLink("");
+                  setEditCategory("");
+                  setFile(null);
+                  setError("");
+                }}
+                className="w-full bg-gray-500 text-white py-2 rounded-xl hover:bg-gray-600 transition"
+              >
+                Cancel Edit
+              </button>
+            )}
           </form>
         </div>
       </div>
