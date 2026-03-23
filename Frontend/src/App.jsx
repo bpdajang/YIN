@@ -13,6 +13,8 @@ import ResourcesPage from "./pages/ResourcesPage.jsx";
 import Admin from "./component/Admin.jsx";
 import Login from "./component/Login.jsx";
 import ProtectedRoute from "./component/ProtectedRoute.jsx";
+import MentorshipSection from "./component/Mentorship.jsx";
+import Discussions from "./component/Discussions.jsx";
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/our-team" element={<OurTeam />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/mentorship" element={<MentorshipSection />} />
+          <Route path="/discussions" element={<Discussions />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/login" element={<Login />} />
           <Route

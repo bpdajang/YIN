@@ -6,6 +6,7 @@ import cors from "cors";
 import connectMongoDB from "./db/connectMongodb.js";
 import ResourceRoutes from "./Routes/ResourceRoutes.js";
 import AuthRoutes from "./Routes/authRoutes.js";
+import DiscussionRoutes from "./Routes/DiscussionRoutes.js";
 
 dotenv.config();
 
@@ -14,25 +15,35 @@ const port = process.env.PORT || 5000;
 const _dirname = path.resolve();
 
 const allowedOrigins = [
-  "https://yin-9f4g.onrender.com", // your frontend Render URL
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://127.0.0.1:3000",
+  "https://yin-9f4g.onrender.com",
 ];
 
 app.use(
   cors({
-    origin: allowedOrigins,
-    credentials: true, // if you use cookies or auth tokens
-  })
+    origin: function (origin, callback) {
+      // Allow requests with no origin (mobile apps, Postman)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  }),
 );
 
-app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(cookieParser()); // Added cookie-parser middleware
+app.use(cookieParser());
 
 // Routes
-
 app.use("/api/resource", ResourceRoutes);
 app.use("/api/auth", AuthRoutes);
+app.use("/api/discussions", DiscussionRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(_dirname, "/Frontend/dist")));

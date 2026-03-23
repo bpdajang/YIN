@@ -81,40 +81,21 @@ const Navbar = () => {
               >
                 Programs
               </a>
-              <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-10 w-64 p-2 shadow absolute top-5 -right-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-10 w-36 p-2 shadow absolute top-5 -right-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                 <li>
-                  <a href="/programs#leadership">
-                    Leadership and Time Management
+                  <a
+                    href="/mentorship"
+                    className="hover:bg-green-300 inline-block"
+                  >
+                    <span>Mentorship and</span>
+                    <br />
+                    <span>Leadership</span>
                   </a>
                 </li>
                 <li>
-                  <a href="/programs#Career">Career Guidance</a>
-                </li>
-                <li>
-                  <a href="/programs#CoverLetter">
-                    Cover Letter and CV Writing
+                  <a href="/discussions" className="hover:bg-green-300">
+                    Discussions
                   </a>
-                </li>
-                <li>
-                  <a href="/programs#MentalHealth">Mental Health Awareness</a>
-                </li>
-                <li>
-                  <a href="/programs#PhysicalHealth">
-                    Physical Health and Wellness
-                  </a>
-                </li>
-                <li>
-                  <a href="/programs#SkillDevelopment">
-                    Skill Development Workshops
-                  </a>
-                </li>
-                <li>
-                  <a href="/programs#CommunityService">
-                    Community Service Projects
-                  </a>
-                </li>
-                <li>
-                  <a href="/programs#Networking">Networking Events</a>
                 </li>
               </ul>
             </li>
@@ -223,7 +204,7 @@ const Navbar = () => {
                 </div>
               </li>
               <li>
-                <div className="drawer drawer-end hover:bg-transparent">
+                <div className="drawer drawer-end">
                   <input
                     id="programs-drawer"
                     type="checkbox"
@@ -236,40 +217,19 @@ const Navbar = () => {
                     <div className="drawer-content hover:bg-transparent">
                       <ul className="menu min-h-full w-80 p-4">
                         <li>
-                          <a href="/programs#leadership">
-                            Leadership and Time Management
+                          <a
+                            href="/mentorship"
+                            className="hover:bg-green-300 inline-block"
+                          >
+                            <span>Mentorship and</span>
+                            <br />
+                            <span>Leadership</span>
                           </a>
                         </li>
                         <li>
-                          <a href="/programs#Career">Career Guidance</a>
-                        </li>
-                        <li>
-                          <a href="/programs#CoverLetter">
-                            Cover Letter and CV Writing
+                          <a href="/discussions" className="hover:bg-green-300">
+                            Discussions
                           </a>
-                        </li>
-                        <li>
-                          <a href="/programs#MentalHealth">
-                            Mental Health Awareness
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/programs#PhysicalHealth">
-                            Physical Health and Wellness
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/programs#SkillDevelopment">
-                            Skill Development Workshops
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/programs#CommunityService">
-                            Community Service Projects
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/programs#Networking">Networking Events</a>
                         </li>
                       </ul>
                     </div>

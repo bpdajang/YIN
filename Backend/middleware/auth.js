@@ -3,8 +3,6 @@ import User from "../Models/User.js";
 
 export const auth = async (req, res, next) => {
   try {
-    console.log("Cookies:", req.cookies);
-    console.log("Headers x-auth-token:", req.headers["x-auth-token"]);
     const token = req.headers["x-auth-token"] || req.cookies.jwt;
     if (!token) {
       return res.status(401).json({ error: "Unauthorised: no Token" });
