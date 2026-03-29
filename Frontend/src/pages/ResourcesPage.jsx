@@ -18,13 +18,18 @@ const ResourcesPage = () => {
   const [eLearning, setELearning] = React.useState([]);
   const [references, setReferences] = React.useState([]);
   const [forums, setForums] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await fetch(
           `${import.meta.env.VITE_API_BASE_URL}/api/resource`,
         );
+        if (!response.ok) throw new Error("Failed to fetch");
         const data = await response.json();
         setTemplates(data.templates || []);
         setELearning(data.eLearning || []);
@@ -32,10 +37,13 @@ const ResourcesPage = () => {
         setForums(data.forums || []);
       } catch (error) {
         console.error("Error fetching resources:", error);
+        setError(error.message);
         setTemplates([]);
         setELearning([]);
         setReferences([]);
         setForums([]);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -113,27 +121,51 @@ const ResourcesPage = () => {
             <FaFileAlt className="mr-2 text-blue-500" /> Templates and Guides
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {templates.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  {item.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{item.description}</p>
-                <a
-                  href={`${
-                    import.meta.env.VITE_API_BASE_URL
-                  }/api/resource/download/${item._id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-700 flex items-center"
+            {loading ? (
+              [...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-6 rounded-lg shadow-md animate-pulse"
                 >
-                  <FaDownload className="mr-1" /> Download
-                </a>
+                  <div className="h-48 bg-gray-200 rounded-lg mb-4" />
+                  <div className="h-5 bg-gray-200 rounded w-3/4 mb-3" />
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-4" />
+                  <div className="h-10 bg-gray-200 rounded-full w-1/3" />
+                </div>
+              ))
+            ) : error ? (
+              <div className="col-span-full text-center py-16">
+                <p className="text-red-500 font-medium">{error}</p>
+                <p className="text-gray-400 text-sm mt-1">
+                  Please try again later.
+                </p>
               </div>
-            ))}
+            ) : templates.length === 0 ? (
+              <div className="col-span-full text-center py-16">
+                <p className="text-gray-500">No templates available yet.</p>
+              </div>
+            ) : (
+              templates.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
+                  <a
+                    href={`
+                      ${import.meta.env.VITE_API_BASE_URL}/api/resource/download/${item._id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-700 flex items-center"
+                  >
+                    <FaDownload className="mr-1" /> Download
+                  </a>
+                </div>
+              ))
+            )}
           </div>
         </section>
 
@@ -144,25 +176,45 @@ const ResourcesPage = () => {
             Webinar Recordings
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {eLearning.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  {item.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{item.description}</p>
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-500 hover:text-green-700 flex items-center"
+            {loading ? (
+              [...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-6 rounded-lg shadow-md animate-pulse"
                 >
-                  <FaPlay className="mr-1" /> Watch Now
-                </a>
+                  <div className="h-48 bg-gray-200 rounded-lg mb-4" />
+                  <div className="h-5 bg-gray-200 rounded w-3/4 mb-3" />
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-4" />
+                  <div className="h-10 bg-gray-200 rounded-full w-1/3" />
+                </div>
+              ))
+            ) : eLearning.length === 0 ? (
+              <div className="col-span-full text-center py-16">
+                <p className="text-gray-500">
+                  No e-learning modules available yet.
+                </p>
               </div>
-            ))}
+            ) : (
+              eLearning.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-500 hover:text-green-700 flex items-center"
+                  >
+                    <FaPlay className="mr-1" /> Watch Now
+                  </a>
+                </div>
+              ))
+            )}
           </div>
         </section>
 
@@ -173,25 +225,45 @@ const ResourcesPage = () => {
             Articles
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {references.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  {item.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{item.description}</p>
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-purple-500 hover:text-purple-700 flex items-center"
+            {loading ? (
+              [...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-6 rounded-lg shadow-md animate-pulse"
                 >
-                  <FaExternalLinkAlt className="mr-1" /> Read More
-                </a>
+                  <div className="h-48 bg-gray-200 rounded-lg mb-4" />
+                  <div className="h-5 bg-gray-200 rounded w-3/4 mb-3" />
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-4" />
+                  <div className="h-10 bg-gray-200 rounded-full w-1/3" />
+                </div>
+              ))
+            ) : references.length === 0 ? (
+              <div className="col-span-full text-center py-16">
+                <p className="text-gray-500">
+                  No reference materials available yet.
+                </p>
               </div>
-            ))}
+            ) : (
+              references.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                    {item.name}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-500 hover:text-purple-700 flex items-center"
+                  >
+                    <FaExternalLinkAlt className="mr-1" /> Read More
+                  </a>
+                </div>
+              ))
+            )}
           </div>
         </section>
 
@@ -244,25 +316,43 @@ const ResourcesPage = () => {
             <FaComments className="mr-2 text-indigo-500" /> Community Forums
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {forums.map((forum, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  {forum.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{forum.description}</p>
-                <a
-                  href={forum.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-indigo-500 hover:text-indigo-700 flex items-center"
+            {loading ? (
+              [...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-white p-6 rounded-lg shadow-md animate-pulse"
                 >
-                  <FaComments className="mr-1" /> Join Discussion
-                </a>
+                  <div className="h-48 bg-gray-200 rounded-lg mb-4" />
+                  <div className="h-5 bg-gray-200 rounded w-3/4 mb-3" />
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-4" />
+                  <div className="h-10 bg-gray-200 rounded-full w-1/3" />
+                </div>
+              ))
+            ) : forums.length === 0 ? (
+              <div className="col-span-full text-center py-16">
+                <p className="text-gray-500">No forums available yet.</p>
               </div>
-            ))}
+            ) : (
+              forums.map((forum, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                    {forum.name}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{forum.description}</p>
+                  <a
+                    href={forum.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-500 hover:text-indigo-700 flex items-center"
+                  >
+                    <FaComments className="mr-1" /> Join Discussion
+                  </a>
+                </div>
+              ))
+            )}
           </div>
         </section>
 
