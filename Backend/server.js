@@ -15,9 +15,9 @@ const port = process.env.PORT || 5000;
 const _dirname = path.resolve();
 
 const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "http://127.0.0.1:3000",
+  // "http://localhost:3000",
+  // "http://localhost:5173",
+  "https://yin-git-main-burjwoks-projects.vercel.app",
   "https://yin-9f4g.onrender.com",
 ];
 
