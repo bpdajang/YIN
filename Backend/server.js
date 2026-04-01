@@ -15,9 +15,9 @@ const port = process.env.PORT || 5000;
 const _dirname = path.resolve();
 
 const allowedOrigins = [
-  // "http://localhost:3000",
+  "https://youthimpactnetworkss.com",
+  "https://www.youthimpactnetworkss.com",
   "https://yin-jade.vercel.app",
-  "https://yin-git-main-burjwoks-projects.vercel.app",
   "https://yin-9f4g.onrender.com",
 ];
 
