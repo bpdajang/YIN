@@ -1,4 +1,17 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+
+<Helmet>
+  <title>Youth Impact Network | Empowering Youth</title>
+  <meta
+    name="description"
+    content="Connect with opportunities, volunteering, and youth impact initiatives."
+  />
+  <meta
+    name="keywords"
+    content="youth, impact, Networking, Leadership, volunteering, community"
+  />
+</Helmet>;
 
 const CheckIcon = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
