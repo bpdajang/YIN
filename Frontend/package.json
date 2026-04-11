@@ -1,6 +1,6 @@
 {
-  "homepage": "https://bpdajang.github.io/HealthyMind",
-  "name": "vite-project",
+  "homepage": "https://www.youthimpactnetworkss.com/",
+  "name": "youth-impact-networks",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^0.575.0",
     "path": "^0.12.7",
     "react": "^19.1.0",
